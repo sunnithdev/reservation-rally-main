@@ -10,6 +10,7 @@ import { Reservations } from '@/components/dashboard/Reservations'
 import { Waitlist } from '@/components/dashboard/Waitlist'
 import { BankDetails } from '@/components/dashboard/BankDetails'
 import { AccountDetails } from '@/components/dashboard/AccountDetails'
+import { RestaurantBookingsPage } from '@/components/dashboard/RestaurantBookingsPage'
 const Dashboard = () => {
   const { user, signOut } = useAuth()
   const navigate = useNavigate()
@@ -22,7 +23,8 @@ const Dashboard = () => {
 
   const navItems = [
     { id: 'restaurant-details', label: 'Restaurant Details', icon: Store, component: RestaurantDetails },
-    { id: 'reservations', label: 'Restaurant Reservations', icon: Calendar, component: Reservations },
+    { id: 'restaurant-bookings', label: 'Restaurant Reservations', icon: Store, component: RestaurantBookingsPage },
+    { id: 'reservations', label: 'Add Reservations', icon: Calendar, component: Reservations },
     { id: 'waitlist', label: 'Waitlist', icon: UserPlus, component: Waitlist },
     { id: 'bank-details', label: 'Your Bank Details', icon: CreditCard, component: BankDetails },
     { id: 'account-details', label: 'Account Details', icon: User, component: AccountDetails },

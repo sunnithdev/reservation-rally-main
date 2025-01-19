@@ -3,13 +3,32 @@ import { motion } from "framer-motion";
 import { RestaurantCard } from "@/components/RestaurantCard";
 import { SearchFilters } from "@/components/SearchFilters";
 import { Button } from "@/components/ui/button";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Loader2 } from 'lucide-react';
 
 const AllRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
   const location = useLocation();
+  const navigate = useNavigate();
+
+
+
+  useEffect(() => {
+    const customer = localStorage.getItem("customer");
+    if (customer) {
+      const customerData = JSON.parse(customer);
+      setUser(customerData.user.user_metadata.full_name); // Get the name from user_metadata
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear(); // Clear user from localStorage
+    setUser(null); // Reset user state
+    navigate("/"); // Redirect to the homepage after logout
+  };
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -50,6 +69,46 @@ const AllRestaurants = () => {
 
   return (
     <div className="min-h-screen bg-white">
+
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <Link to="/" className="text-2xl font-bold font-serif">
+            TableMaster
+          </Link>
+          <nav className="hidden md:flex space-x-6">
+            <Link to="/restaurants" className="text-sm font-medium hover:text-primary transition-colors">Restaurants</Link>
+            {/* <Link to="/experiences" className="text-sm font-medium hover:text-primary transition-colors">Experiences</Link> */}
+            <Link to="/membership" className="text-sm font-medium hover:text-primary transition-colors">Membership</Link>
+          </nav>
+          <div className="flex items-center space-x-4">
+          {/* Show user info and dropdown if logged in */}
+          {user ? (
+            <div className="flex gap">
+              <Button asChild>
+                <Link to="bookings" className="text-sm font-semibold" >{user}</Link>
+              </Button>
+                <button 
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+            </div>
+          ) : (
+            <>
+              <Button asChild>
+                <Link to="user-auth">Sign In</Link>
+              </Button>
+              <Button variant="ghost" asChild>
+                <Link to="/signup">For Restaurants</Link>
+              </Button>
+            </>
+          )}
+        </div>
+        </div>
+      </header>
+
       {/* Hero Section with Search Bar */}
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center bg-gradient-to-r from-primary/90 to-primary text-white overflow-hidden">
         <motion.div 

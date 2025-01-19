@@ -5,9 +5,10 @@ import { SearchFilters } from "@/components/SearchFilters";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, Clock, ChefHat, Gift, Utensils, Users, Calendar, Award, ArrowRight } from 'lucide-react';
+import { Star, Clock, ChefHat, Gift, Utensils, Users, Calendar, Award, ArrowRight, CircleUser } from 'lucide-react';
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const FEATURED_RESTAURANTS = [
   {
@@ -80,6 +81,7 @@ const Index = () => {
   const [restaurants] = useState(FEATURED_RESTAURANTS);
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -100,6 +102,20 @@ const Index = () => {
     });
   };
 
+  useEffect(() => {
+    const customer = localStorage.getItem("customer");
+    if (customer) {
+      const customerData = JSON.parse(customer);
+      setUser(customerData.user.user_metadata.full_name); // Get the name from user_metadata
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear(); // Clear user from localStorage
+    setUser(null); // Reset user state
+    navigate("/"); // Redirect to the homepage after logout
+  };
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* Header */}
@@ -114,13 +130,30 @@ const Index = () => {
             <Link to="/membership" className="text-sm font-medium hover:text-primary transition-colors">Membership</Link>
           </nav>
           <div className="flex items-center space-x-4">
-            <Button asChild>
-              <Link to="user-auth">Sign In</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link to="/signup">For Restaurants</Link>
-            </Button>
-          </div>
+          {/* Show user info and dropdown if logged in */}
+          {user ? (
+            <div className="flex gap">
+              <Button asChild>
+                <Link to="bookings" className="text-sm font-semibold" >{user}</Link>
+              </Button>
+                <button 
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+            </div>
+          ) : (
+            <>
+              <Button asChild>
+                <Link to="user-auth">Sign In</Link>
+              </Button>
+              <Button variant="ghost" asChild>
+                <Link to="/signup">For Restaurants</Link>
+              </Button>
+            </>
+          )}
+        </div>
         </div>
       </header>
 

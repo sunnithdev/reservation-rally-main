@@ -16,6 +16,7 @@ import Success from "./pages/Success";
 import Cancelled from "./pages/Cancelled";
 import MembershipPage from "./pages/Membership";
 import UserAuthPage from "./pages/UserAuthPage";
+import Bookings from "./pages/Bookings";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/booking/success" element={<Success />} />
             <Route path="/booking/cancelled" element={<Cancelled />} />
             <Route path="/user-auth" element={<UserAuthPage />} />
+            <Route path="/bookings" element={<Bookings />} />
             
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

@@ -37,8 +37,10 @@ const UserAuthPage = () => {
         
         toast({
           title: 'Success',
-          description: 'Please check your email to verify your account.',
+          description: 'Successfully Signed up',
         })
+        localStorage.setItem('customer',JSON.stringify(data))
+        navigate('/restaurants')
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
@@ -51,6 +53,7 @@ const UserAuthPage = () => {
           title: 'Success',
           description: 'Logged in successfully!',
         })
+        localStorage.setItem('customer',JSON.stringify(data))
         navigate('/restaurants')
       }
     } catch (error) {
