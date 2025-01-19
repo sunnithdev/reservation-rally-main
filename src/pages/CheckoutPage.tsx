@@ -107,7 +107,7 @@ export default function CheckoutPage() {
   const handlePayment = async (userEmail: string) => {
     setIsLoading(true)
     try {
-      const response = await fetch('http://localhost:5000/api/stripe/create-checkout-session', {
+      const response = await fetch('https://table-master-backend.onrender.com/api/stripe/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

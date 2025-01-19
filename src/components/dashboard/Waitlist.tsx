@@ -30,7 +30,7 @@ export function Waitlist() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/waitlist/${restaurantId}`);
+      const response = await fetch(`https://table-master-backend.onrender.com/api/waitlist/${restaurantId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch waitlist');
       }
@@ -46,7 +46,7 @@ export function Waitlist() {
 
   const removeFromWaitlist = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/waitlist/${id}`, {
+      const response = await fetch(`https://table-master-backend.onrender.com/api/waitlist/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {

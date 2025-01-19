@@ -27,7 +27,7 @@ const AllRestaurants = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/restaurants?location=${filters.location}&party_size=${filters.partySize}&available_dates=${filters.date}&time=${filters.time}`
+        `https://table-master-backend.onrender.com/api/restaurants?location=${filters.location}&party_size=${filters.partySize}&available_dates=${filters.date}&time=${filters.time}`
       );
       
       if (!response.ok) {

@@ -25,7 +25,7 @@ export default function RestaurantDetails() {
       setError(null);
 
       try {
-        const response = await fetch(`http://localhost:5000/api/restaurants/${id}`);
+        const response = await fetch(`https://table-master-backend.onrender.com/api/restaurants/${id}`);
         if (!response.ok) {
           throw new Error("Restaurant not found");
         }
@@ -90,7 +90,7 @@ export default function RestaurantDetails() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/waitlist', {
+      const response = await fetch('https://table-master-backend.onrender.com/api/waitlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

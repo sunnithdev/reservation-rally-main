@@ -45,7 +45,7 @@ export function Reservations() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/reservations/${restaurantId}/available_dates`
+        `https://table-master-backend.onrender.com/api/reservations/${restaurantId}/available_dates`
       );
       if (!response.ok) throw new Error("Failed to fetch dates");
       const dates = await response.json();
@@ -108,7 +108,7 @@ export function Reservations() {
         throw new Error("No restaurant ID found");
       }
 
-      const response = await fetch("http://localhost:5000/api/reservations/available_dates", {
+      const response = await fetch("https://table-master-backend.onrender.com/api/reservations/available_dates", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -143,7 +143,7 @@ export function Reservations() {
     if (!confirm("Are you sure you want to delete this date and its time slots?")) return;
     
     try {
-      const response = await fetch(`http://localhost:5000/api/reservations/available_dates/${dateId}`, {
+      const response = await fetch(`https://table-master-backend.onrender.com/api/reservations/available_dates/${dateId}`, {
         method: "DELETE",
       });
       if (!response.ok) throw new Error("Failed to delete date");
@@ -166,7 +166,7 @@ export function Reservations() {
   const handleDeleteTimeSlot = async (dateId: number, timeSlotId: number) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/reservations/time_slots/${timeSlotId}`,
+        `https://table-master-backend.onrender.com/api/reservations/time_slots/${timeSlotId}`,
         {
           method: "DELETE",
         }
@@ -210,7 +210,7 @@ export function Reservations() {
         throw new Error("No restaurant ID found");
       }
 
-      const response = await fetch("http://localhost:5000/api/reservations", {
+      const response = await fetch("https://table-master-backend.onrender.com/api/reservations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

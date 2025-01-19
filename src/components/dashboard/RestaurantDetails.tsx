@@ -27,7 +27,7 @@ export function RestaurantDetails() {
         const user_data = localStorage.getItem('user')
         const userId = JSON.parse(user_data || '{}')?.session?.user?.id
 
-        const response = await fetch(`http://localhost:5000/api/restaurants/user/${userId}`)
+        const response = await fetch(`https://table-master-backend.onrender.com/api/restaurants/user/${userId}`)
         if (!response.ok) {
           throw new Error("Failed to fetch restaurant")
         }
@@ -115,8 +115,8 @@ export function RestaurantDetails() {
       }
 
       const url = restaurant._id 
-        ? `http://localhost:5000/api/restaurants/${restaurant._id}`
-        : 'http://localhost:5000/api/restaurants'
+        ? `https://table-master-backend.onrender.com/api/restaurants/${restaurant._id}`
+        : 'https://table-master-backend.onrender.com/api/restaurants'
       
       const method = restaurant._id ? 'PUT' : 'POST'
 
