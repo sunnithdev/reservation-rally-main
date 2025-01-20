@@ -77,7 +77,7 @@ export function SearchFilters({ onSearch }) {
       </Select>
 
       {/* Search Button */}
-      <Button onClick={handleSearch} className="w-full md:w-auto bg-white text-primary hover:bg-white/90">
+      <Button onClick={handleSearch} className="w-full md:w-auto bg-red-900 text-neutral-200 hover:bg-white/90 hover:text-red-900">
         Search
       </Button>
     </div>

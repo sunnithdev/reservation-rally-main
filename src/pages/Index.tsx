@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { RestaurantCard } from "@/components/RestaurantCard";
-import { SearchFilters } from "@/components/SearchFilters";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, Clock, ChefHat, Gift, Utensils, Users, Calendar, Award, ArrowRight, CircleUser } from 'lucide-react';
+import { Star, Clock, ChefHat, Gift, Utensils, Users, Calendar, Award, ArrowRight, CircleUser, Crown, Bell } from 'lucide-react';
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { FeaturedSection } from "@/components/FeaturedSection";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
 
 const FEATURED_RESTAURANTS = [
   {
@@ -56,44 +57,38 @@ const FEATURED_RESTAURANTS = [
 const KEY_FEATURES = [
   {
     icon: <Calendar className="w-6 h-6 text-primary" />,
-    title: "Exclusive Access",
-    description: "Secure tables at the world's most sought-after restaurants",
+    title: "Exclusive Reservations",
+    description: "Discover and book priority access to exclusive tables at top restaurants, with a curated selection of high-demand spots.",
   },
   {
-    icon: <Clock className="w-6 h-6 text-primary" />,
-    title: "Prime-Time Reservations",
-    description: "Book hard-to-get slots during peak dining hours",
+    icon: <Crown className="w-6 h-6 text-primary" />,
+    title: "Premium Membership",
+    description: "Unlock perks like early access, personalized recommendations, last-minute booking options, and concierge support.",
   },
   {
-    icon: <Star className="w-6 h-6 text-primary" />,
-    title: "Premium Experiences",
-    description: "Unlock unique culinary events and tasting menus",
+    icon: <Bell className="w-6 h-6 text-primary" />,
+    title: "Waitlist Management",
+    description: "Receive real-time notifications when waitlisted tables become available, ensuring you never miss a spot.",
   },
   {
-    icon: <Award className="w-6 h-6 text-primary" />,
-    title: "Curated Selection",
-    description: "Choose from a handpicked list of exceptional restaurants",
+    icon: <Users className="w-6 h-6 text-primary" />,
+    title: "Social & Reviews",
+    description: "Share your dining experiences and read verified reviews from other users within the website.",
   },
 ];
+
 
 const Index = () => {
   const { toast } = useToast();
   const [restaurants] = useState(FEATURED_RESTAURANTS);
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleSearch = (filters) => {
-    console.log("Filters submitted:", filters);
-    const queryParams = new URLSearchParams(filters).toString();
-    navigate(`/restaurants?${queryParams}`);
-  };
 
   const handleBooking = () => {
     toast({
@@ -102,99 +97,20 @@ const Index = () => {
     });
   };
 
-  useEffect(() => {
-    const customer = localStorage.getItem("customer");
-    if (customer) {
-      const customerData = JSON.parse(customer);
-      setUser(customerData.user.user_metadata.full_name); // Get the name from user_metadata
-    }
-  }, []);
 
-  const handleLogout = () => {
-    localStorage.clear(); // Clear user from localStorage
-    setUser(null); // Reset user state
-    navigate("/"); // Redirect to the homepage after logout
-  };
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold font-serif">
-            TableMaster
-          </Link>
-          <nav className="hidden md:flex space-x-6">
-            <Link to="/restaurants" className="text-sm font-medium hover:text-primary transition-colors">Restaurants</Link>
-            {/* <Link to="/experiences" className="text-sm font-medium hover:text-primary transition-colors">Experiences</Link> */}
-            <Link to="/membership" className="text-sm font-medium hover:text-primary transition-colors">Membership</Link>
-          </nav>
-          <div className="flex items-center space-x-4">
-          {/* Show user info and dropdown if logged in */}
-          {user ? (
-            <div className="flex gap">
-              <Button asChild>
-                <Link to="bookings" className="text-sm font-semibold" >{user}</Link>
-              </Button>
-                <button 
-                  onClick={handleLogout}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  Logout
-                </button>
-            </div>
-          ) : (
-            <>
-              <Button asChild>
-                <Link to="user-auth">Sign In</Link>
-              </Button>
-              <Button variant="ghost" asChild>
-                <Link to="/signup">For Restaurants</Link>
-              </Button>
-            </>
-          )}
-        </div>
-        </div>
-      </header>
+      <Header></Header>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 md:pt-32 md:pb-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h1 
-              className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              Your Gateway to Extraordinary Dining
-            </motion.h1>
-            <motion.p 
-              className="text-lg md:text-xl mb-8 text-gray-600"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              Unlock access to the world's most coveted tables and curated culinary experiences.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <Button size="lg" className="mr-4" asChild>
-                <Link to="/restaurants">Discover Restaurants</Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/membership">Join TableMaster</Link>
-              </Button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <Hero></Hero>
+
+      <FeaturedSection></FeaturedSection>
 
       {/* Featured Restaurants */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-center mb-12">Featured Restaurants</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -227,12 +143,12 @@ const Index = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Key Features */}
-      <section className="py-16 md:py-24">
+      <section className="pt-8 pb-16 md:pb-24 md:pt-10">
         <div className="container mx-auto px-4">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center mb-12">The TableMaster Experience</h2>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center mb-24">The TableMaster Experience</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {KEY_FEATURES.map((feature, index) => (
               <motion.div 
@@ -260,7 +176,7 @@ const Index = () => {
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
             Join TableMaster Premium for priority access, exclusive benefits, and personalized concierge service.
           </p>
-          <Button size="lg" variant="secondary">
+          <Button size="lg" className="bg-gray-900">
             Become a Member
           </Button>
         </div>
@@ -323,7 +239,6 @@ const Index = () => {
                 <li><a href="#" className="hover:text-primary transition-colors">Instagram</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Twitter</a></li>
                 <li><a href="#" className="hover:text-primary transition-colors">Facebook</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">LinkedIn</a></li>
               </ul>
             </div>
           </div>

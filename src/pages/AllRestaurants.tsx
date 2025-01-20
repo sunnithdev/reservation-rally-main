@@ -110,7 +110,7 @@ const AllRestaurants = () => {
       </header>
 
       {/* Hero Section with Search Bar */}
-      <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center bg-gradient-to-r from-primary/90 to-primary text-white overflow-hidden">
+      <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center bg-gradient-to-r from-gray-900/90 to-gray-900 text-white overflow-hidden">
         <motion.div 
           className="absolute inset-0"
           initial={{ scale: 1.1 }}
