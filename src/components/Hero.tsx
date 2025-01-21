@@ -79,7 +79,7 @@ export function Hero() {
               </Link>
               <Link
                 to="/membership"
-                className="inline-flex items-center px-8 py-3.5 rounded-full border bg-red-900 text-neutral-100 font-medium transition-all duration-300 hover:bg-neutral-100 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center px-8 py-3.5 rounded-full border bg-red-900 text-neutral-100 font-medium transition-all duration-300 hover:bg-neutral-100 hover:text-red-900 hover:border-red-900 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Join TableMaster
               </Link>

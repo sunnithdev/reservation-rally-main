@@ -110,7 +110,7 @@ const AllRestaurants = () => {
       </header>
 
       {/* Hero Section with Search Bar */}
-      <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center bg-gradient-to-r from-gray-900/90 to-gray-900 text-white overflow-hidden">
+      <section className="pt-10 relative h-[90vh] md:h-[70vh] flex items-center justify-center bg-gradient-to-r from-gray-900/90 to-gray-900 text-white overflow-hidden">
         <motion.div 
           className="absolute inset-0"
           initial={{ scale: 1.1 }}
@@ -159,7 +159,7 @@ const AllRestaurants = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center md:text-left">Explore Our Restaurants</h2>
+          <h2 className="font-serif text-xl md:text-2xl font-bold text-center md:text-left">Explore Our Restaurants</h2>
         </motion.div>
 
         {/* Loading State */}
@@ -184,12 +184,14 @@ const AllRestaurants = () => {
                   transition={{ delay: 0.1 * index }}
                 >
                   <RestaurantCard
+                    key={restaurant.id}
                     id={restaurant.id}
                     name={restaurant.name}
-                    cuisine={restaurant.cuisine}
                     rating={restaurant.rating}
+                    cuisine={restaurant.cuisine || "chinese"}
+                    priceRange={restaurant.price_range}
+                    district={restaurant.location}
                     image={restaurant.images[0]}
-                    priceRange={restaurant.priceRange}
                   />
                 </motion.div>
               ))
