@@ -18,7 +18,7 @@ const Dashboard = () => {
 
   const handleSignOut = async () => {
     await signOut()
-    navigate('/login')
+    navigate('/')
   }
 
   const navItems = [

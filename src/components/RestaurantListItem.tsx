@@ -35,7 +35,7 @@ export function RestaurantListItem({
         />
       </Link>
       <div className="flex-1 min-w-0">
-        <Link to={`/restaurants/${id}`} className="block">
+        <Link to={`/restaurant/${id}`} className="block">
           <h4 className="font-medium text-white truncate group-hover:text-gold transition-colors">
             {name}
           </h4>

@@ -5,7 +5,27 @@ import { RestaurantListItem } from './RestaurantListItem'
 
 const TRENDING_RESTAURANTS = [
   {
-    id: 1,
+    id: 14,
+    name: "Alo",
+    reviews: 624,
+    rating: 4.8,
+    district: "Toronto",
+    cuisine: "French",
+    priceRange: "$$$$",
+    image: "https://resizer.otstatic.com/v2/photos/wide-huge/4/64183382.jpg"
+  },
+  {
+    id: 2,
+    name: "Edulis",
+    rating: 4.7,
+    reviews: 212,
+    cuisine: "Seasonal Canadian", 
+    district: "Toronto",
+    priceRange: "$$$",
+    image: "https://madamemarie.co/wp-content/uploads/2019/07/IMG_2275-e1562365974577-768x1024.jpg"
+  },
+  {
+    id: 25,
     name: "Le Bernardin",
     rating: 4.9,
     reviews: 282,
@@ -15,7 +35,7 @@ const TRENDING_RESTAURANTS = [
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop"
   },
   {
-    id: 2,
+    id: 26,
     name: "Daniel",
     rating: 4.8,
     reviews: 434,
@@ -23,32 +43,32 @@ const TRENDING_RESTAURANTS = [
     priceRange: "$$$$",
     district: "Upper East Side",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    id: 3,
-    name: "Atomix",
-    rating: 4.9,
-    reviews: 521,
-    cuisine: "Contemporary Korean",
-    priceRange: "$$$$",
-    district: "NoMad",
-    image: "https://images.unsplash.com/photo-1517244683847-7456b63c5969?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    id: 4,
-    name: "Eleven Madison Park",
-    rating: 4.8,
-    reviews: 612,
-    cuisine: "Contemporary American",
-    priceRange: "$$$$",
-    district: "Flatiron",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
   }
-]
+];
 
 const TOP_RATED = [
   {
-    id: 5,
+    id: 29,
+    name: "Don Alfonso 1890",
+    reviews: 434,
+    rating: 4.9,
+    cuisine: "Italian",
+    priceRange: "$$$$",
+    district: "Toronto",
+    image: "https://canadas100best.com/wp-content/uploads/2023/05/DonAlfonso1890-2023-feat.jpg"
+  },
+  {
+    id: 30,
+    name: "Sushi Masaki Saito",
+    rating: 4.9,    
+    reviews: 282,
+    cuisine: "Japanese",
+    priceRange: "$$$$",
+    district: "Toronto",
+    image: "https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,q_75,w_1200/v1/crm/toronto/Sushi-Masaki-Saito_Capture_68D3E157-5056-A36F-23505D0BBC82265D-68d3ddd25056a36_68d3ea7c-5056-a36f-236113b5548f533f.png"
+  },
+  {
+    id: 31,
     name: "Masa",
     rating: 4.9,
     reviews: 655,
@@ -58,7 +78,7 @@ const TOP_RATED = [
     image: "https://images.unsplash.com/photo-1502301103665-0b95cc738daf?q=80&w=2070&auto=format&fit=crop"
   },
   {
-    id: 6,
+    id: 32,
     name: "Per Se",
     rating: 4.8,
     reviews: 366,
@@ -66,32 +86,32 @@ const TOP_RATED = [
     priceRange: "$$$$",
     district: "Columbus Circle",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    id: 7,
-    name: "Jean-Georges",
-    rating: 4.8,
-    reviews: 434,
-    cuisine: "French",
-    priceRange: "$$$$",
-    district: "Central Park",
-    image: "https://images.unsplash.com/photo-1517244683847-7456b63c5969?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    id: 8,
-    name: "Le Pavillon",
-    rating: 4.8,
-    reviews: 414,
-    cuisine: "French",
-    priceRange: "$$$$",
-    district: "Midtown",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
   }
-]
+];
 
 const NEW_ARRIVALS = [
   {
-    id: 9,
+    id: 3,
+    name: "Canoe",
+    rating: 4.6,    
+    reviews: 655,
+    cuisine: "Contemporary Canadian",
+    district: "Toronto",
+    priceRange: "$$$$",
+    image: "https://cdn.oliverbonacininetwork.com/uploads/sites/23/2021/01/Canoe-Reno-500x600-1.jpg"
+  },
+  {
+    id: 4,
+    name: "Quetzal",    
+    reviews: 397,
+    rating: 4.5,
+    district: "Toronto",
+    cuisine: "Mexican",
+    priceRange: "$$$",
+    image: "https://api.flavournetwork.ca/wp-content/uploads/2023/03/quetzalresto-feature-image.jpg"
+  },
+  {
+    id: 27,
     name: "Saga",
     rating: 4.7,
     reviews: 228,
@@ -101,7 +121,7 @@ const NEW_ARRIVALS = [
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop"
   },
   {
-    id: 10,
+    id: 28,
     name: "Yoshino",
     rating: 4.8,
     reviews: 128,
@@ -109,28 +129,9 @@ const NEW_ARRIVALS = [
     priceRange: "$$$$",
     district: "NoHo",
     image: "https://images.unsplash.com/photo-1502301103665-0b95cc738daf?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    id: 11,
-    name: "63 Clinton",
-    rating: 4.8,
-    reviews: 156,
-    cuisine: "Contemporary American",
-    priceRange: "$$$",
-    district: "Lower East Side",
-    image: "https://images.unsplash.com/photo-1517244683847-7456b63c5969?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    id: 12,
-    name: "Tatiana",
-    rating: 4.7,
-    reviews: 198,
-    cuisine: "Contemporary American",
-    priceRange: "$$$",
-    district: "Lincoln Center",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
   }
-]
+];
+
 
 export function FeaturedSection() {
   return (
