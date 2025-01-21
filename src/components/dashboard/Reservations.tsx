@@ -47,7 +47,7 @@ export function Reservations() {
       const response = await fetch(
         `https://table-master-backend.onrender.com/api/reservations/${restaurantId}/available_dates`
       );
-      if (!response.ok) throw new Error("Failed to fetch dates");
+      if (!response.ok) throw new Error("No dates available");
       const dates = await response.json();
       setAvailableDates(dates);
       setIsLoading(false);
@@ -55,7 +55,7 @@ export function Reservations() {
       console.error("Error fetching dates:", error);
       toast({
         title: "Error",
-        description: "Failed to fetch available dates. Please try again.",
+        description: error.message ||"Failed to fetch available dates. Please try again.",
         variant: "destructive",
       });
       setIsLoading(false);

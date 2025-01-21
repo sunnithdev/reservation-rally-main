@@ -113,32 +113,32 @@ const Bookings = () => {
             <div className="flex justify-center items-center h-96">
               <Loader />
             </div>
-          ) : bookings.length === 0 ? (
+          ) : bookings?.length === 0 ? (
             <div className="text-center text-lg text-gray-600">
               You have no bookings at the moment.
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {bookings.map((booking, index) => (
+              {bookings?.map((booking, index) => (
                 <div
                   key={index}
                   className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                    {booking.restaurant}
+                    {booking?.restaurant}
                   </h3>
                   <div className="text-sm text-gray-600">
                     <p>
-                      <strong>Restaurant name:</strong> {booking.restaurant_name}
+                      <strong>Restaurant name:</strong> {booking?.restaurant_name}
                     </p>
                     <p>
-                      <strong>Date:</strong> {booking.booking_date}
+                      <strong>Date:</strong> {booking?.booking_date}
                     </p>
                     <p>
-                      <strong>Time:</strong> {booking.booking_time}
+                      <strong>Time:</strong> {booking?.booking_time}
                     </p>
                     <p>
-                      <strong>Status:</strong> {booking.status}
+                      <strong>Status:</strong> {booking?.status}
                     </p>
                   </div>
                   <Button variant="outline" className="mt-4">

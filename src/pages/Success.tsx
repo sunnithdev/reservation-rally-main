@@ -42,7 +42,7 @@ const Success: React.FC = () => {
           </CardHeader>
           <CardContent className="text-center">
             <p className="text-gray-600 mb-4">
-              Thank you for your booking. We look forward to seeing you!
+              Thank you for your booking?. We look forward to seeing you!
             </p>
             {sessionId && (
               <div className="bg-green-50 p-4 rounded-lg mb-4">

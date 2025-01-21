@@ -22,7 +22,7 @@ const Cancelled: React.FC = () => {
               Booking Cancelled
             </CardTitle>
             <CardDescription className="text-center">
-              We're sorry to see you cancel your booking.
+              We're sorry to see you cancel your booking?.
             </CardDescription>
           </CardHeader>
           <CardContent>

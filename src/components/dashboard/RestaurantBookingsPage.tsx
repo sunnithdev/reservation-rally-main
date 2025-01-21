@@ -39,7 +39,11 @@ export function RestaurantBookingsPage() {
           throw new Error('Failed to fetch bookings');
         }
         const data = await response.json();
-        setBookings(data);
+        console.log(data,"-----------------data");
+        if(data?.length){
+          
+          setBookings(data);
+        }
       } catch (err) {
         setError('Error fetching bookings. Please try again later.');
         toast({
@@ -92,7 +96,7 @@ export function RestaurantBookingsPage() {
             </div>
           ) : error ? (
             <div className="text-center text-red-500">{error}</div>
-          ) : bookings.length === 0 ? (
+          ) : bookings?.length === 0 ? (
             <div className="text-center text-muted-foreground">No bookings found for this restaurant.</div>
           ) : (
             <Table>
@@ -106,22 +110,22 @@ export function RestaurantBookingsPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {bookings.map((booking) => (
-                  <TableRow key={booking.id}>
+                {bookings?.length && bookings?.map((booking) => (
+                  <TableRow key={booking?.id}>
                     <TableCell className="font-medium">
                       <User className="inline-block mr-2 h-4 w-4" />
-                      {booking.email}
+                      {booking?.email}
                     </TableCell>
                     <TableCell>
                       <Calendar className="inline-block mr-2 h-4 w-4" />
-                      {formatDate(booking.booking_date)}
+                      {formatDate(booking?.booking_date)}
                     </TableCell>
                     <TableCell>
                       <Clock className="inline-block mr-2 h-4 w-4" />
-                      {formatTime(booking.booking_time)}
+                      {formatTime(booking?.booking_time)}
                     </TableCell>
-                    <TableCell>{booking.party_size}</TableCell>
-                    <TableCell>{booking.special_requests || 'None'}</TableCell>
+                    <TableCell>{booking?.party_size}</TableCell>
+                    <TableCell>{booking?.special_requests || 'None'}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
